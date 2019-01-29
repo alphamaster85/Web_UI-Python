@@ -1,0 +1,138 @@
+##Activity
+#Engineering Management
+Process planning (SDLC)
+Estimation
+#Requirements
+Software requirements engineering
+#Design
+OOD
+DB design
+Modeling
+#Construction
+Programming language
+Refactoring
+Concurrency
+Distributed objects and components
+Networking
+Web UI
+Web server applications
+#DB
+SQL
+DB access
+#Verification
+Code quality
+Automated testing
+Security
+#Configuration Management
+Product builds and continuous integration
+Managing versions
+##Skill
+#Programming languages
+Python
+JavaScript
+HTML
+CSS
+SQL
+Go (golang)
+Node.js
+Unix Shell Scripting
+#Frameworks and libraries
+jQuery
+ExtJS
+Angular.js
+React.js
+Backbone
+Bootstrap
+Prototype
+ZeroMQ
+RabbitMQ
+Greenlet
+Shrapnel
+Tornado
+Twisted
+Pyramid
+Flask
+Django
+Zope
+web2py
+Cheetah
+Jinja2
+Selenium
+Docker
+Microsoft Visio
+#Servers and databases
+Apache
+nginx
+gUnicorn
+uWSGI
+mod_wsgi
+MySQL
+Oracle
+PostgreSQL
+SQLite
+MongoDB
+Redis
+Memcached
+Riak
+Tokyo Cabinet
+#Methodologies and practices
+Agile
+Scrum
+Waterfall
+XP
+Kanban
+TDD
+#Continuous integration and build
+Jenkins/Hudson
+TeamCity
+Bamboo
+Make
+Ant
+Fabric
+#Version control systems
+Git
+SVN
+CVS
+Perforce
+Mercurial
+#Code quality tools
+Pylint
+Pychecker
+Pyflakes
+Code review tools
+Crucible
+Review Board
+Gerrit
+CodeCollaborator
+#Issue tracking systems
+JIRA
+Bugzilla
+Trac
+Redmine
+Rally
+#Platforms
+Windows
+Linux
+FreeBSD
+#Big Data
+HDFS
+YARN
+Mesos
+Hive
+MapReduce
+Spark
+Kafka
+Oozie
+Thrift
+Hadoop
+AWS EMR
+Aws Redshift
+Aws Athena
+AWS Kinesis
+Google Dataproc
+Google BigQuery
+Google PubSub
+Azure HDinsight
+Azure SQL Data Warehouse
+Azure EventHubs
+#Other candidate's skills
