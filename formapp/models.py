@@ -7,24 +7,24 @@ class RoleModel(models.Model):
 
     role = models.CharField(max_length=30, default=None)
 
-class UserDataModel(models.Model):
-    class Meta:
-        db_table = 'usersdata'
-
-    name = models.CharField(max_length=30, default=None)
-    last = models.CharField(max_length=30, default=None)
-    age = models.PositiveSmallIntegerField()
-    email = models.CharField(max_length=30, default=None)
-    date = models.DateTimeField('date')
-
 class UserModel(models.Model):
     class Meta:
         db_table = 'users'
 
     login = models.CharField(max_length=30, default=None)
     password = models.CharField(max_length=30, default=None)
-    user = models.OneToOneField(UserDataModel, on_delete = models.CASCADE, related_name='userid')
     role = models.ForeignKey(RoleModel, on_delete = models.DO_NOTHING)
+    date = models.DateField(default=None)
+
+class UserDataModel(models.Model):
+    class Meta:
+        db_table = 'usersdata'
+
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='userid')
+    name = models.CharField(max_length=30, default=None)
+    last = models.CharField(max_length=30, default=None)
+    age = models.PositiveSmallIntegerField(default=None)
+    email = models.CharField(max_length=30, default=None)
 
 class GradesModel(models.Model):
     class Meta:
@@ -51,7 +51,8 @@ class QuestionModel(models.Model):
 
     course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
     stage = models.ForeignKey(StageModel, on_delete=models.CASCADE)
-    qestion = models.CharField(max_length=50, default=None)
+    question = models.CharField(max_length=50, default=None)
+    tooltip = models.TextField(max_length=350, null=True, default=None)
 
 class AnswerModel(models.Model):
     class Meta:

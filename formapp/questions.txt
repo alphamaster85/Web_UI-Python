@@ -1,31 +1,51 @@
 ##Activity
 #Engineering Management
 Process planning (SDLC)
+*Understanding of common software development life cycle models (Waterfall, Agile), Scrum concepts and process, pros and cons of tools, technics and approaches used in a development process.
 Estimation
+*Terminology understanding, using simple and advanced estimations techniques: Scope, Estimates/Targets/Commitments, Overestimate vs Underestimate, Analogy and Story based estimates, methods: Delphi, PERT, COCOMO II etc.
 #Requirements
 Software requirements engineering
+*Sources of Requirements, Software Requirements Specifications, Requirements Elicitation Techniques (Brainstorming, Interviews, Survey/Questionnaire, Document Analysis), Functional vs Non-Functional requirements.
 #Design
 OOD
+*An ability to use effectively fundamental OOP knowledge, microarchitectural design patterns (as 3 major groups of GoF design patterns like creational, structural and behavioral) and major macroachitectural patterns (MVC, Layered Architecture, IoC, etc), SOLID principles.
 DB design
+*Relational data concepts understanding (Entity-Relationship, normalization, denormalization, transactions). Defining database structure that guarantee data integrity and relations integrity. Define security and structure based optimization. Design complex databases from scratch. Database engines, ACID.
 Modeling
+*UML diagrams: structure, behavior and interaction.
 #Construction
 Programming language
+*Language fundamentals, basic constructions, standard language library, tasks
 Refactoring
+*Refactoring techniques, “code smells” detecting, refactoring and patterns.
 Concurrency
+*Concurrency and thread management, synchronization methods (locks, re-entrant locks, semaphores, events, shared memory, message queues). Python’s GIL, threading, multiprocessing. Deadlock problem, Thread Pool, Producer-Consumer model, Greenlets, microthreads, coroutines.
 Distributed objects and components
+*XML-RPC, REST, SOAP, WSDL.
 Networking
+*OSI model, understanding layers and protocols, TCP/IP. SSH, Telnet, rdesktop, VNC. Python’s socket module. TCP vs UDP, SSL/TLS.
 Web UI
+*HTML elements and CSS styling, DOM. JavaScript: variables, data type, operators and constructions, event handling. HTML 5.
 Web server applications
+*Frameworks: Django, Flask, Bottle, web2py, Pyramid. Templating engines: Jinja2, Django template system, Cheetah. Web servers: mod_wsgi, uWSGI, Tornado, nginx, Apache. Content management Systems: Pinax, Plone, Silva, PyLucid.
 #DB
 SQL
+*SQL data types, operators, functions. Data manipulation: insert, update, select, delete. Joins, unions, aggregations, permission management.
 DB access
+*Python DB-API 2.0, connection and cursor objects. Concepts: CRUD, transaction, index, trigger, view, stored procedure. ODBC, ORM concepts, SQLAlchemy, MySQLdb. NoSQL (MongoDB, Redis).
 #Verification
 Code quality
+*Python Style Guide, Code review theory and toolset, static code analysis tools, metrics.
 Automated testing
+*Unit test framework including managing test suites, organizing and building tests, applying mocking techniques to test design, evaluating code coverage. Python’s unittest, doctest. Testing of WebUI, GUI.
 Security
+*Understanding of security concepts, security threats types and prevention techniques, cryptography concepts. HTTP vs HTTPS, authentication and authorization, password security.
 #Configuration Management
 Product builds and continuous integration
+*Automated build concept, building tools (make, ant, rake, etc). Continuous Integration concept, best practices and frameworks.
 Managing versions
+*Version Control Systems understanding: Git, Perforce, SVN, CVS, Mercurial etc.
 ##Skill
 #Programming languages
 Python
@@ -99,7 +119,7 @@ Mercurial
 Pylint
 Pychecker
 Pyflakes
-Code review tools
+#Code review tools
 Crucible
 Review Board
 Gerrit
