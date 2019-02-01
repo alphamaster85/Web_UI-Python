@@ -5,11 +5,52 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static "css/style.css" %}" />
     <title>Hello Django</title>
+    <style>
+    	
+    </style>
 </head>
 <body>
-    <h1>{{ header }}</h1>
-    <p>Name: {{ user.name }} Age: {{ user.age }}</p>
-    <p>Address: ул. {{ address.0 }}, д. {{ address.1 }}, кв. {{ address.2 }}</p>
-    <p>Langs: {{ langs.0 }}, {{ langs.1 }}</p>
+    
+    <!--<header>-->
+    	<!--<h1>{{ header }}</h1>-->
+	    <!--<p>Name: {{ user.name }} Age: {{ user.age }}</p>-->
+	    <!--<p>Address: ул. {{ address.0 }}, д. {{ address.1 }}, кв. {{ address.2 }}</p>-->
+	    <!--<p>Langs: {{ langs.0 }}, {{ langs.1 }}</p>-->
+    <!--</header>-->
+
+	<!--<div class="md-stepper-horizontal orange">-->
+	    <!--<div class="md-step active done">-->
+		    <!--<div class="md-step-circle"><span>1</span></div>-->
+		    <!--<div class="md-step-title">Checkout</div>-->
+		    <!--<div class="md-step-bar-left"></div>-->
+		    <!--<div class="md-step-bar-right"></div>-->
+	    <!--</div>-->
+	    <!--<div class="md-step active editable">-->
+	    	<!--<div class="md-step-circle"><span>2</span></div>-->
+	    	<!--<div class="md-step-title">Shipping</div>-->
+	    	<!--<div class="md-step-optional">Optional</div>-->
+	    	<!--<div class="md-step-bar-left"></div>-->
+	    	<!--<div class="md-step-bar-right"></div>-->
+	    <!--</div>-->
+	    <!--<div class="md-step active">-->
+	    	<!--<div class="md-step-circle"><span>3</span></div>-->
+	    	<!--<div class="md-step-title">Payment</div>-->
+	    	<!--<div class="md-step-bar-left"></div>-->
+	    	<!--<div class="md-step-bar-right"></div>-->
+	    <!--</div>-->
+	    <!--<div class="md-step">-->
+	    	<!--<div class="md-step-circle"><span>4</span></div>-->
+	    	<!--<div class="md-step-title">Review</div>-->
+	    	<!--<div class="md-step-bar-left"></div>-->
+	    	<!--<div class="md-step-bar-right"></div>-->
+	    <!--</div>-->
+  	<!--</div>-->
+
+        {% for elem in questions %}
+             <p>{{ elem.id }} {{ elem.department }} {{ elem.name }} </p>
+        {% endfor %}
+
+    <footer></footer>
+
 </body>
 </html>

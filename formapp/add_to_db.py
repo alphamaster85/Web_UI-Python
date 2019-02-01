@@ -79,7 +79,7 @@ def insert_from_file():
         flag_dict = {'Skills':'Activities', 'Activities':'Skills'}
         stage_id = 0
         for row in file:
-            row = row.replace('\n', '').replace("'", "''")
+            row = row.replace('\n', '')#.replace("'", "''")
             if row[0] is '#' and row[1] is '#':
                 flag = flag_dict[flag]
             elif row[0] is '#':
@@ -119,4 +119,4 @@ def insert_from_file():
 # insert_table_ones('grades', 'grade', 'Strong')
 # insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
 # insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
-insert_from_file()
+# insert_from_file()
