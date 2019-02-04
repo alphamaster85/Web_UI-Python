@@ -24,8 +24,7 @@ def insert_table_ones(table, first_place, name):
             conn.close()
 
 def insert_table_users(table, place1st, place2nd, place3th, place4th, dat1st, data2nd, data3th):
-    sql = """INSERT INTO "{}"({}, {}, {}, {}, {})
-             VALUES('{}', '{}', '{}', '{}');""".format(table, place1st, place2nd, place3th, place4th, dat1st, data2nd, data3th, datetime.date.today())
+    sql = """INSERT INTO "{}"({}, {}, {}, {}) VALUES('{}', '{}', '{}', '{}');""".format(table, place1st, place2nd, place3th, place4th, dat1st, data2nd, data3th, datetime.date.today())
     conn = None
     try:
         # connect to the PostgreSQL database
@@ -66,9 +65,9 @@ def insert_table_usersdata(table, place1st, place2nd, place3th, place4th, place5
             conn.close()
 
 def insert_from_file():
-    sql_que_tlt = """INSERT INTO "questions"(question, course_id, stage_id, tooltip) VALUES(%s, 1, %s, %s);"""
-    sql_stg = """INSERT INTO "stages"(stage, part) VALUES(%s, %s) RETURNING id;"""
-    sql_que = """INSERT INTO "questions"(question, course_id, stage_id) VALUES(%s, 1, %s);"""
+    sql_que_tlt = """INSERT INTO "questions"(title, course_id, stage_id, tooltip) VALUES(%s, 1, %s, %s);"""
+    sql_stg = """INSERT INTO "stages"(name, department) VALUES(%s, %s) RETURNING id;"""
+    sql_que = """INSERT INTO "questions"(title, course_id, stage_id) VALUES(%s, 1, %s);"""
     conn = None
     try:
         conn = psycopg2.connect('dbname=formbase user=postgres password=root')
@@ -106,17 +105,19 @@ def insert_from_file():
         if conn is not None:
             conn.close()
 
-# insert_table_ones('courses', 'course', 'Python')
-# insert_table_ones('courses', 'course', '.NET')
-# insert_table_ones('courses', 'course', 'Java')
-# insert_table_ones('roles', 'role', 'Admin')
-# insert_table_ones('roles', 'role', 'User')
-# insert_table_ones('roles', 'role', 'Expert')
-# insert_table_ones('roles', 'role', 'Recruiter')
-# insert_table_ones('grades', 'grade', 'None')
-# insert_table_ones('grades', 'grade', 'Beginner')
-# insert_table_ones('grades', 'grade', 'Good')
-# insert_table_ones('grades', 'grade', 'Strong')
-# insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
-# insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
-# insert_from_file()
+if __name__ == "__main__":
+    # insert_table_ones('courses', 'name', 'Python')
+    # insert_table_ones('courses', 'name', '.NET')
+    # insert_table_ones('courses', 'name', 'Java')
+    # insert_table_ones('roles', 'name', 'Admin')
+    # insert_table_ones('roles', 'name', 'User')
+    # insert_table_ones('roles', 'name', 'Expert')
+    # insert_table_ones('roles', 'name', 'Recruiter')
+    # insert_table_ones('grades', 'name', 'None')
+    # insert_table_ones('grades', 'name', 'Beginner')
+    # insert_table_ones('grades', 'name', 'Good')
+    # insert_table_ones('grades', 'name', 'Strong')
+    # insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
+    # insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
+    # insert_from_file()
+    pass

@@ -1,0 +1,59 @@
+.tabs { 
+    width: 85%; 
+    padding: 0px; 
+    margin: 15px; 
+    margin-left: 8%; /* Отступ слева */
+    margin-right: 10%; /* Отступ справа */
+}
+/*.tabs input {
+    display:none;
+    margin-top: 10px;
+}
+.tabs div {
+    display: none;
+    padding: 10px;
+    border: 1px solid navy;
+} */
+.tabs label {
+    display: inline-block;
+    width: 250px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    /*border-top-left-radius: 7px*/
+    padding: 7px;
+    margin: 0 -5px -1px 0;
+    text-align: center;
+    color: silver;
+    border: 0px solid navy;
+    cursor: pointer;
+}
+#activities:checked + label,
+#skills:checked + label {
+    color: navy;
+    font-weight:bold;
+    border: 1px solid navy;
+    border-bottom: 1px solid #FFFFFF;
+    background: #FFFFFF;
+}
+
+#activities, 
+#skills {
+    display:none;
+    margin-top: 10px;
+}
+
+#stages_activities,
+#stages_skills {
+    display: none;
+    padding: 10px;
+    border: 1px solid navy;
+}
+
+#activities:checked ~ #stages_activities,
+#skills:checked ~ #stages_skills { 
+    display: block; 
+}
+#activities:checked ~ #stage,
+#skills:checked ~ #stage { 
+    display: block; 
+}
