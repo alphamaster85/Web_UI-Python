@@ -9,5 +9,6 @@ def index(request):
 
     stages = StageModel.objects.all()
     questions = QuestionModel.objects.all()
+    departments = ['Activities', 'Skills'] # list(set(StageModel.objects.all()))
 
-    return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages})
+    return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages, 'departments':departments})

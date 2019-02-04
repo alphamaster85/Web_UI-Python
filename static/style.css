@@ -42,10 +42,10 @@ a {
 	text-align: center;
 	/*padding: 0 0 20px 0;
 	margin: 0 0 20px 0;*/
-	flex: 1 0 auto;
+	flex: 2 0 auto;
 }
 .main {
-	flex: 1 0 auto;
+	flex: 2 0 auto;
 }
 .footer {
 	padding: 10px 10px 10px 10px;
@@ -105,3 +105,13 @@ a {
 	background-color: darkgrey;
 	color: white;
 }
+.lightning p {
+	height: 25px;
+}
+.lightning:hover p {
+	background-color: whitesmoke;
+}
+/*.like label {
+	width: 20px;
+	margin: 0 5px;
+}*/

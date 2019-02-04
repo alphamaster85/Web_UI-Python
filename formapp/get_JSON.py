@@ -15,3 +15,9 @@
 #
 # print(results)
 # # print(json.dumps(results, indent=2))
+
+from .models import StageModel
+
+if __name__ == "__main__":
+    a = StageModel.objects.all()
+    print(a)

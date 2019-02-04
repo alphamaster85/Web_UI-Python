@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
+
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{% static "css/normalize.css" %}" />
-    <link rel="stylesheet" href="{% static "css/style.css" %}" />
-    <link rel="stylesheet" href="{% static "css/tabs.css" %}" />
-    <link rel="stylesheet" href="{% static "css/stage.css" %}" />
-    <link rel="stylesheet" href="{% static "css/table.css" %}" />
-    <link rel="stylesheet" href="{% static "css/toggle.css" %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tabs.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/stage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/table.css' %}" />
     <title>Python Self-Evaluation Form</title>
     <style>
     	{% for stage in stages %}
@@ -49,39 +49,46 @@
     <main class="main">
     <div>
 		<div class="tabs">
-    		<input type="radio" name="inset" value="" id="activities" checked>
-    		<label for="activities">Activities</label>
+    		{% for department in departments %}
+    		<input type="radio" name="inset" value="" id="{{ department }}">
+    		<label for="{{ department }}">{{ department }}</label>
+    		{% endfor %}
 
-    		<input type="radio" name="inset" value="" id="skills">
-    		<label for="skills">Skills</label>
-
-    		<div id="stages_activities">
-    			<div class="stage" id="stage">
+    		{% for department in departments %}
+    		<div id="stages_{{ department }}">
     			{% for stage in stages %}
-				{% if stage.department == 'Activities' %}
-					<input type="radio" name="set_activities" value="" id="stage_{{ stage.id }}">
+				{% if stage.department == department %}
+				<div class="stage" id="stage_row_{{ stage.id }}">    			
+					<input type="radio" name="set_{{ department }}" value="" id="stage_{{ stage.id }}">
 					<label for="stage_{{ stage.id }}">{{ stage.name }}</label>
 				{% endif %}
 	        	{% endfor %}
+	        {% endfor %}
 
+	        {% for department in departments %}
 	        	{% for stage in stages %}
-				{% if stage.department == 'Activities' %}
+				{% if stage.department == department %}
 					<div id="questions_{{ stage.id }}" class="row"> 
 						<div class="row">
+							{% if department == 'Activities' %}
 							<p id="tcol1" class="col1" class="table">Activity</p>
+							{% endif %}
+							{% if department == 'Skills' %}
+							<p id="tcol1" class="col1" class="table">Skill</p>
+							{% endif %}
 							<p id="tcol2" class="col2" class="table">Like to do, Y/N</p>
 							<p id="tcol3" class="col3" class="table">Self estimate, Grade</p>
 						</div>
 
 						{% for question in questions %}
 	                	{% if question.stage_id == stage.id %}
-	                	<div class="row">
+	                	<div class="row lightning">
 		                	<p id="title_{{ question.id }}" class="row col1" title="{{ question.tooltip }}">{{ question.title }}</p>
 		                	<p id="like_{{ question.id }}" class="row col2">
 		                		<input type="radio" name="like{{ question.id }}" value="True" id="likeY{{ question.id }}" class="row">
-								<label for="likeY{{ question.id }}" class="row"> 	YES	 </label>
-								<input type="radio" name="like{{ question.id }}" value="False" id="likeN{{ question.id }}" class="row">
-								<label for="likeN{{ question.id }}" class="row"> 	NO	 </label>
+								<label for="likeY{{ question.id }}" class="row like"> 	YES	 </label>
+								<input type="radio" name="like{{ question.id }}" value="False" id="likeN{{ question.id }}" class="row ">
+								<label for="likeN{{ question.id }}" class="row like"> 	NO	 </label>
 		                	</p>
 		                	<p id="like_{{ question.id }}" class="row col3">
 		                		<input type="radio" name="grade{{ question.id }}" value="None" id="gradeN{{ question.id }}" class="row">
@@ -102,85 +109,9 @@
 	        	{% endfor %}
     			</div> 
     		</div>
-
-    		<div id="stages_skills">
-        		<div class="stage" id="stage">
-    			{% for stage in stages %}
-				{% if stage.department == 'Skills' %}
-					<input type="radio" name="set_skills" value="" id="stage_{{ stage.id }}">
-					<label for="stage_{{ stage.id }}">{{ stage.name }}</label>
-				{% endif %}
-	        	{% endfor %}
-
-
-        		{% for stage in stages %}
-				{% if stage.department == 'Skills' %}
-					<div id="questions_{{ stage.id }}" class="row"> 
-						<div class="row">
-							<p id="tcol1" class="col1" class="table">Skill</p>
-							<p id="tcol2" class="col2" class="table">Like to do, Y/N</p>
-							<p id="tcol3" class="col3" class="table">Self estimate, Grade</p>
-						</div>
-
-						{% for question in questions %}
-	                	{% if question.stage_id == stage.id %}
-	                	<div class="row">
-		                	<p id="title_{{ question.id }}" class="row col1">{{ question.title }}</p>
-		                	<p id="like_{{ question.id }}" class="row col2">
-		                		<input type="radio" name="like{{ question.id }}" value="True" id="likeY{{ question.id }}" class="row">
-								<label for="likeY{{ question.id }}" class="row"> YES </label>
-								<input type="radio" name="like{{ question.id }}" value="False" id="likeN{{ question.id }}" class="row">
-								<label for="likeN{{ question.id }}" class="row"> NO </label>
-		                	</p>
-		                	<p id="like_{{ question.id }}" class="row col3">
-		                		<input type="radio" name="grade{{ question.id }}" value="None" id="gradeN{{ question.id }}" class="row">
-								<label for="gradeN{{ question.id }}" class="row" title="None"> N </label>
-								<input type="radio" name="grade{{ question.id }}" value="Beginner" id="gradeB{{ question.id }}" class="row">
-								<label for="gradeB{{ question.id }}" class="row" title="Beginner"> B </label>
-								<input type="radio" name="grade{{ question.id }}" value="Goog" id="gradeG{{ question.id }}" class="row">
-								<label for="gradeG{{ question.id }}" class="row" title="Goog"> G </label>
-								<input type="radio" name="grade{{ question.id }}" value="Strong" id="gradeS{{ question.id }}" class="row">
-								<label for="gradeS{{ question.id }}" class="row" title="Strong"> S </label>
-		                	</p>
-		                </div>
-
-	                	{% endif %}
-	                	{% endfor %}
-					</div>
-				{% endif %}
-	        	{% endfor %}
-    			</div> 
-    		</div>    		
+    		{% endfor %}
 		</div>
-
-				<!-- <div class="md-stepper-horizontal orange">
-		            <div class="md-step active done">
-		                <div class="md-step-circle"><span>1</span></div>
-		                <div class="md-step-title">Checkout</div>
-		                <div class="md-step-bar-left"></div>
-		                <div class="md-step-bar-right"></div>
-		            </div>
-		            <div class="md-step active editable">
-		                <div class="md-step-circle"><span>2</span></div>
-		                <div class="md-step-title">Shipping</div>
-		                <div class="md-step-optional">Optional</div>
-		                <div class="md-step-bar-left"></div>
-		                <div class="md-step-bar-right"></div>
-		            </div>
-		            <div class="md-step active">
-		                <div class="md-step-circle"><span>3</span></div>
-		                <div class="md-step-title">Payment</div>
-		                <div class="md-step-bar-left"></div>
-		                <div class="md-step-bar-right"></div>
-		            </div>
-		            <div class="md-step">
-		                <div class="md-step-circle"><span>4</span></div>
-		                <div class="md-step-title">Review</div>
-		                <div class="md-step-bar-left"></div>
-		                <div class="md-step-bar-right"></div>
-		            </div>
-		        </div> -->
-          
+         
     </div>
     </main>
 
