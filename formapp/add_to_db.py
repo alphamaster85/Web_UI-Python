@@ -2,7 +2,7 @@
 import psycopg2
 import datetime
 from django.db import models
-from .models import *
+# from form_project.formapp.models import AnswerModel, QuestionModel
 
 def insert_table_ones(table, first_place, name):
     """ insert a new vendor into the vendors table """
@@ -110,15 +110,41 @@ def insert_from_file():
 def insert_answers_user():
     USER_ID = 1
 
-    for question in QuestionModel.objects.all():
-        answer = AnswerModel()
-        answer.user = USER_ID
-        if question.course_id == 1:
-            answer.question = question.id
-            answer.like = None
-            answer.grade = None
-            answer.date = None
-            answer.save()
+    # for question in QuestionModel.objects.all():
+    #     answer = AnswerModel()
+    #     answer.user = USER_ID
+    #     if question.course_id == 1:
+    #         answer.question = question.id
+    #         answer.like = None
+    #         answer.grade = None
+    #         answer.date = None
+    #         answer.save()
+
+    sql_insert = """INSERT INTO answers(user_id, question_id) VALUES(%s, %s);"""
+    sql_select = """SELECT id FROM questions;"""
+    conn = None
+    try:
+        conn = psycopg2.connect('dbname=formbase user=postgres password=root')
+        cur_select = conn.cursor()
+
+        cur_select.execute(sql_select)
+        columns = ('id',)
+        results = []
+        for row in cur_select.fetchall():
+            results.append(dict(zip(columns, row)))
+        cur_select.close()
+
+        cur_insert = conn.cursor()
+        for row in results:
+            cur_insert.execute(sql_insert, (USER_ID, row['id']))
+            conn.commit()
+        cur_insert.close()
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 
 if __name__ == "__main__":
     # insert_table_ones('courses', 'name', 'Python')
@@ -135,5 +161,5 @@ if __name__ == "__main__":
     # insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
     # insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
     # insert_from_file()
-    insert_answers_user()
+    # insert_answers_user()
     pass

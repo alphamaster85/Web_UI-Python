@@ -29,7 +29,7 @@
     		<h2><small>Python Self-Evaluation Form</small></h2>
     	</div>
     	<div class="containerright">
-    		<form action="#" class="login">
+    		<form class="login">
     			<input type="text" name="" placeholder="Login" required="">
     			<input type="password" name="" placeholder="Password" required="">
     			<input type="submit" name="" value="Sign In">
@@ -40,7 +40,8 @@
 
     <main class="main">
 		<div class="tabs">
-		<form method="POST" class="record">
+		<form method="POST" class="record" action="">
+		{% csrf_token %}
     		{% for department in departments %}
     		{% if forloop.first %}
     		<input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}" checked>
@@ -66,19 +67,19 @@
 	        	{% for stage in stages %}
 				{% if stage.department == department %}
 				<div id="tab_stage_{{ stage.id }}" class="row"> 
-					<div class="row">
+					<div id="head_row_{{ stage.id }}" class="row">
 					{% if department == 'Activities' %}
-					<p id="tcol1" class="col1 table">Activity</p>
+					<p id="head_col_1_{{ stage.id }}" class="col1 head">Activity</p>
 					{% else %}
-					<p id="tcol1" class="col1 table">Skill</p>
+					<p id="head_col_1_{{ stage.id }}" class="col1 head">Skill</p>
 					{% endif %}
-					<p id="tcol2" class="col2 table">Like to do, Y/N</p>
-					<p id="tcol3" class="col3 table">Self estimate, Grade</p>
+					<p id="head_col_2_{{ stage.id }}" class="col2 head">Like to do, Y/N</p>
+					<p id="head_col_3_{{ stage.id }}" class="col3 head">Self estimate, Grade</p>
 					</div>
 
 					{% for question in questions %}
 	                {% if question.stage_id == stage.id %}
-	                <div class="row lightning">
+	                <div id="table_row_{{ question.id }}"class="row lightning">
 		                {% if question.tooltip == None %}
 		                <p id="question_{{ question.id }}" class="row col1">{{ question.title }}</p>
 		                {% else %}
@@ -86,31 +87,34 @@
 		                {% endif %}
 		                
 		                {% for answer in answers %}
-		                <p id="like_{{ question.id }}" class="row col2">
-		                	{% if answer.question_id == question.id and answer.like == True %}
-		                	<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row" checked>
-		                	{% else %}
-							<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row">
-		                	{% endif %}
-							<label for="set_YES_{{ question.id }}" class="row like">YES</label>
-							
-							{% if answer.question_id == question.id and answer.like == False %}
-							<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row " checked>
-							{% else %}
-							<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row ">
-							{% endif %}
-							<label for="set_NO_{{ question.id }}" class="row like">NO</label>							
-		                </p>
-		                <p id="grade_{{ question.id }}" class="row col3">
-		                {% for grade in grades %}	
-		                	{% if answer.question_id == question.id and answer.grade_id == grade.id %}
-		                	<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row" checked>
-		                	{% else %}
-							<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row">
-							{% endif %}
-							<label for="set_{{ grade.name }}_{{ question.id }}" class="row" title="{{ grade.name }}">{{ grade.name|first }}</label>
-						{% endfor %}
-		                </p>
+			                
+			                {% if answer.question_id == question.id %}
+			                <p id="like_{{ question.id }}" class="row col2">
+				                {% if answer.like == True %}
+				                	<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row" checked>
+				                {% else %}
+									<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row">
+				                {% endif %}
+				                <label for="set_YES_{{ question.id }}" class="row like">YES</label>
+								
+								{% if answer.like == False %}
+									<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row " checked>
+								{% else %}
+									<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row ">
+								{% endif %}
+								<label for="set_NO_{{ question.id }}" class="row like">NO</label>
+							</p>
+							<p id="grade_{{ question.id }}" class="row col3">
+			                {% for grade in grades %}
+			                	{% if answer.grade_id == grade.id %}
+			                		<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row" checked>
+			                	{% else %}
+									<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row">
+								{% endif %}
+								<label for="set_{{ grade.name }}_{{ question.id }}" class="row" title="{{ grade.name }}">{{ grade.name|first }}</label>
+							{% endfor %}
+							 </p>
+			                {% endif %}
 		                {% endfor %}
 		            </div>
 	                {% endif %}
@@ -120,7 +124,7 @@
 	        	{% endfor %}
 	        </div>
     		{% endfor %}
-    	<input type="submit" name="" value="Send">
+    	<input type="submit" name="" value="Send All">
     	</form>
     	</div>
     </main>
