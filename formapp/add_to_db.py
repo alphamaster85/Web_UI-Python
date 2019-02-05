@@ -1,6 +1,8 @@
-#from . import models
+# from . import models
 import psycopg2
 import datetime
+from django.db import models
+from .models import *
 
 def insert_table_ones(table, first_place, name):
     """ insert a new vendor into the vendors table """
@@ -105,6 +107,19 @@ def insert_from_file():
         if conn is not None:
             conn.close()
 
+def insert_answers_user():
+    USER_ID = 1
+
+    for question in QuestionModel.objects.all():
+        answer = AnswerModel()
+        answer.user = USER_ID
+        if question.course_id == 1:
+            answer.question = question.id
+            answer.like = None
+            answer.grade = None
+            answer.date = None
+            answer.save()
+
 if __name__ == "__main__":
     # insert_table_ones('courses', 'name', 'Python')
     # insert_table_ones('courses', 'name', '.NET')
@@ -120,4 +135,5 @@ if __name__ == "__main__":
     # insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
     # insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
     # insert_from_file()
+    insert_answers_user()
     pass

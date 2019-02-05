@@ -27,33 +27,27 @@
     border: 0px solid navy;
     cursor: pointer;
 }
-#activities:checked + label,
-#skills:checked + label {
+#set_Activities, 
+#set_Skills {
+    display:none;
+    margin-top: 10px;
+}
+#set_Activities:checked + label,
+#set_Skills:checked + label {
     color: navy;
     font-weight:bold;
     border: 1px solid navy;
     border-bottom: 1px solid #FFFFFF;
     background: #FFFFFF;
 }
-
-#activities, 
-#skills {
-    display:none;
-    margin-top: 10px;
-}
-
-#stages_activities,
-#stages_skills {
+#tab_Activities,
+#tab_Skills {
     display: none;
     padding: 10px;
     border: 1px solid navy;
 }
 
-#activities:checked ~ #stages_activities,
-#skills:checked ~ #stages_skills { 
-    display: block; 
-}
-#activities:checked ~ #stage,
-#skills:checked ~ #stage { 
+#set_Activities:checked ~ #tab_Activities,
+#set_Skills:checked ~ #tab_Skills { 
     display: block; 
 }

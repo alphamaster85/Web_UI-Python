@@ -62,7 +62,7 @@ class AnswerModel(models.Model):
     question = models.ForeignKey(QuestionModel, on_delete=models.DO_NOTHING)
     like = models.NullBooleanField(default=None, null=True)
     grade = models.ForeignKey(GradeModel, on_delete=models.DO_NOTHING, default=None, null=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=None, null=True)
 
 class CommentExpModel(models.Model):
     class Meta:

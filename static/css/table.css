@@ -28,7 +28,7 @@
     font-weight:bold;
     border: 0;
     border-bottom: 1px solid #FFFFFF;
-    background: #FFFFFF;
+    /*background: #FFFFFF;*/
 }
 #tcol1, #tcol2, #tcol3 {
 	display: block;
@@ -59,4 +59,8 @@
 	display: block;
 	float:left;
 	text-align: center;	
+}
+.stage {
+	margin: 0px; 
+	margin-left: 0;
 }
