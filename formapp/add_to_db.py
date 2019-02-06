@@ -161,5 +161,5 @@ if __name__ == "__main__":
     # insert_table_users('users', 'login', 'password', 'role_id', 'date', 'admin', 'admin', '1')
     # insert_table_usersdata('usersdata', 'name', 'last', 'age', 'email', 'user_id', 'Andre', 'UA', 33, 'admin@ss.com', 1)
     # insert_from_file()
-    # insert_answers_user()
+    insert_answers_user()
     pass

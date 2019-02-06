@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/tabs.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/stage.css' %}" />
+    <link rel="stylesheet" href="{% static 'stage.css' %}" />
     <link rel="stylesheet" href="{% static 'css/table.css' %}" />
     <title>Python Self-Evaluation Form</title>
     <style>
@@ -60,7 +60,13 @@
 					{% else %}
 					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}">
 					{% endif %}
-					<label for="stage_{{ stage.id }}">{{ stage.name }}</label>
+						{% for stage_index in stage_indexes %}
+						{% if stage_index == stage.id %}
+						<label for="stage_{{ stage.id }}">{{ stage.name }}</label>
+						{% endif %}
+						{% endfor %}
+						
+						
 				{% endif %}
 	        	{% endfor %}
 	        

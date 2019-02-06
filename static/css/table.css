@@ -68,3 +68,6 @@
 	font-weight: bold;
 	color: navy;
 }
+.stage label {
+    width: 4%;
+}
