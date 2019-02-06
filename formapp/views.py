@@ -26,15 +26,22 @@ def index(request):
 
         all_answers = []
         for answer in answers:
+
+            ans = AnswerModel()
+            ans.id = answer.id
+            ans.question_id = answer.question_id
+            ans.user_id = answer.user_id
+
+            print(ans.user_id, ans.question_id, ans.id)
             if request.POST.get('set_like_' + str(answer.question_id)):
-                answer.like = request.POST.get('set_like_' + str(answer.question_id))
+                ans.like = request.POST.get('set_like_' + str(answer.question_id))
             if request.POST.get('set_grade_' + str(answer.question_id)):
-                answer.grade_id = int(request.POST.get('set_grade_' + str(answer.question_id)))
-            all_answers.append(answer)
-            answer.save()
+                ans.grade_id = int(request.POST.get('set_grade_' + str(answer.question_id)))
+            all_answers.append(ans)
+            # answer.save()
 
-        # AnswerModel.objects.bulk_create(all_answers)
+        AnswerModel.objects.bulk_create(all_answers)
 
-        answers = AnswerModel.objects.filter(user=USER_ID)
+        # answers = AnswerModel.objects.filter(user=USER_ID)
 
     return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes})
