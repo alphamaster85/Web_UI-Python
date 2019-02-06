@@ -1,0 +1,39 @@
+.stage { 
+    width: 95%; 
+    padding: 0px; 
+    margin: 0px; 
+    margin-left: 0;  /*Отступ слева */
+    margin-right: 5%; /* Отступ справа */
+}
+.stage input {
+    display:none;
+    margin-top: 10px;
+    float: left;
+
+}
+.stage div {
+    display: none;
+    padding: 10px;
+    border: 1px solid navy;
+}
+.stage label {
+    display: inline-block;
+    width: 10%;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    /*border-top-left-radius: 7px*/
+    padding: 7px;
+    margin: 0 10px 0 0;
+    text-align: center;
+    color: silver;
+    border: 0px solid navy;
+    cursor: pointer;
+}
+.stage input:checked + label {
+    color: navy;
+    width: auto;
+    font-weight:bold;
+    border: 1px solid navy;
+    border-bottom: 1px solid #FFFFFF;
+    /*background: #FFFFFF;*/
+}

@@ -1,0 +1,21 @@
+.button {
+	padding: 5px 5px;
+	margin: 20px 0 0 0;
+	margin-right: 5px;
+	/*float: right;*/
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	width: 213px
+}
+.button:hover {
+	background-color: darkgrey;
+	color: white;
+}
+.prev {
+	/*float: left;*/
+	margin: 20px 0 0 10%;
+}
+.next {
+	float: right;
+	margin: 20px 10% 0 0;
+}

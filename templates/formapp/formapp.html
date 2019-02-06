@@ -9,12 +9,23 @@
     <link rel="stylesheet" href="{% static 'css/tabs.css' %}" />
     <link rel="stylesheet" href="{% static 'stage.css' %}" />
     <link rel="stylesheet" href="{% static 'css/table.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/button.css' %}" />
     <title>Python Self-Evaluation Form</title>
     <style>
     	{% for stage in stages %}
 		#stage_{{ stage.id }}:checked ~ #tab_stage_{{ stage.id }} {
 		    display: block; 
 		}
+		#label_txt_{{ stage.id }} {
+			display: none;
+		}
+		/*#stage_{{ stage.id }}:checked ~ #label_num_{{ stage.id }} {
+		    display: none;
+		}
+		#stage_{{ stage.id }}:checked ~ #label_txt_{{ stage.id }} {
+		    display: block;
+		    width: auto;
+		}*/
 		{% endfor %}
     </style>
 </head>
@@ -48,7 +59,7 @@
     		{% else %}
     		<input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}">
     		{% endif %}
-    		<label for="set_{{ department }}">{{ department }}</label>
+    		<label for="set_{{ department }}">{{ department }}</label>    		
     		{% endfor %}
     		
     		{% for department in departments %}
@@ -60,9 +71,10 @@
 					{% else %}
 					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}">
 					{% endif %}
-						{% for stage_index in stage_indexes %}
-						{% if stage_index == stage.id %}
-						<label for="stage_{{ stage.id }}">{{ stage.name }}</label>
+						{% for index, value in stage_indexes.items %}
+						{% if index == stage.id %}
+						<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num">{{ value }}</label>
+						<label id="label_txt_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_txt">{{ stage.name }}</label>
 						{% endif %}
 						{% endfor %}
 						
@@ -128,6 +140,8 @@
 				 </div>				
 				{% endif %}
 	        	{% endfor %}
+	        <button id="btn_prev_{{ department }}" class="button prev" action="">Previous</button>
+	        <button id="btn_next_{{ department }}" class="button next" action="">Next</button>
 	        </div>
     		{% endfor %}
     	<input type="submit" name="" value="Send All">
@@ -142,5 +156,9 @@
     </footer>
 
 </div>
+	{% block extrahead %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script type="text/javascript" src="{% static 'script.js' %}"></script>
+    {% endblock extrahead %}
 </body>
 </html>

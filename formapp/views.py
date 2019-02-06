@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import StageModel, QuestionModel, AnswerModel, GradeModel
+from bulk_update.helper import bulk_update
+USER_ID = 1
 
 def index(request):
-    USER_ID = 1
 
     stages = StageModel.objects.all()
     questions = QuestionModel.objects.all()
@@ -20,28 +21,23 @@ def index(request):
         if stage.department == departments[1]:
             stage_indexes[stage.id] = j
             j += 1
-        print(stage_indexes[stage.id])
 
     if request.method == "POST":
 
         all_answers = []
         for answer in answers:
 
-            ans = AnswerModel()
-            ans.id = answer.id
-            ans.question_id = answer.question_id
-            ans.user_id = answer.user_id
-
-            print(ans.user_id, ans.question_id, ans.id)
             if request.POST.get('set_like_' + str(answer.question_id)):
-                ans.like = request.POST.get('set_like_' + str(answer.question_id))
+                answer.like = request.POST.get('set_like_' + str(answer.question_id))
             if request.POST.get('set_grade_' + str(answer.question_id)):
-                ans.grade_id = int(request.POST.get('set_grade_' + str(answer.question_id)))
-            all_answers.append(ans)
-            # answer.save()
+                answer.grade_id = int(request.POST.get('set_grade_' + str(answer.question_id)))
+            all_answers.append(answer)
 
-        AnswerModel.objects.bulk_create(all_answers)
+        bulk_update(answers)
 
-        # answers = AnswerModel.objects.filter(user=USER_ID)
+        answers = AnswerModel.objects.filter(user=USER_ID)
 
     return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes})
+
+
+
