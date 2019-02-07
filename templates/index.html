@@ -1,35 +1,57 @@
 <!DOCTYPE html>
-<html>
-	<head>
-	    <meta charset="utf-8" />
-	    <title>PSEF</title>
-	</head>
-<body>
-    <header>
-    	<div>
-    		<h1>Soft<b>Serve</b></h1>
-    		<h2><small>PSEF</small></h2>
-    	</div>
-    	<div>
-    		<ul>
-    			<li><a href="#">Home</a></li>
-    			<li><a href="#">About</a></li>
-    			<li><a href="#">Contacts</a></li>
+{% load static %}
 
-    			<form action="#">
-    				<input type="text" name="" placeholder="Login" required="">
-    				<input type="password" name="" placeholder="Password" required="">
-    				<input type="submit" name="" value="Sign In">	
-    			</form>
-    		</ul>
-    	</div>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Python Self-Evaluation Form{% endblock %}</title>    
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tabs.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/stage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/table.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/button.css' %}" />
+
+    {% block style %}
+    {% endblock %}
+</head>
+
+<body>
+<div class="wrapper">
+
+    <header class="header">
+    <div id="centr">
+        <div class="containerleft">
+            <h1>Soft<b>Serve</b></h1>
+            <h2><small>Python Self-Evaluation Form</small></h2>
+        </div>
+        <div class="containerright">
+            {% block login %}
+            <form class="login">
+                <input type="text" name="" placeholder="Login" required="">
+                <input type="password" name="" placeholder="Password" required="">
+                <input type="submit" name="" value="Sign In">
+            </form>  
+            {% endblock %}
+        </div>
+    </div>
     </header>
-    <nav></nav>
-    <main></main>
-    <footer>
-    	<div>
-    		<p>Soft<b>Serve</b> 2019</p>
-    	</div>
+
+    <main class="main">
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div>
+            <p>Soft<b>Serve</b> 2019</p>
+        </div>
     </footer>
+
+</div>
+    {% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script type="text/javascript" src="{% static 'script.js' %}"></script>
+    {% endblock %}
 </body>
 </html>
