@@ -12,13 +12,16 @@ def index(request):
     answers = AnswerModel.objects.filter(user_id=USER_ID)
     grades = GradeModel.objects.all()
 
-    i = 1; j = 1
+    i = 1; j = 1; skills_first = None
     stage_indexes = {}
     for stage in stages:
         if stage.department == departments[0]:
             stage_indexes[stage.id] = i
             i += 1
         if stage.department == departments[1]:
+            if j == 1:
+                skills_first = i
+                print(skills_first)
             stage_indexes[stage.id] = j
             j += 1
 
@@ -37,7 +40,7 @@ def index(request):
 
         answers = AnswerModel.objects.filter(user=USER_ID)
 
-    return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes})
+    return render(request, "formapp/formapp.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes, 'skills_first':skills_first})
 
 
 

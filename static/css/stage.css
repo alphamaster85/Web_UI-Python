@@ -18,12 +18,12 @@
 }
 .stage label {
     display: inline-block;
-    width: 10%;
+    width: 4%;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
     /*border-top-left-radius: 7px*/
     padding: 7px;
-    margin: 0 10px 0 0;
+    margin: 0 10px -1px 0;
     text-align: center;
     color: silver;
     border: 0px solid navy;
@@ -31,7 +31,6 @@
 }
 .stage input:checked + label {
     color: navy;
-    width: auto;
     font-weight:bold;
     border: 1px solid navy;
     border-bottom: 1px solid #FFFFFF;

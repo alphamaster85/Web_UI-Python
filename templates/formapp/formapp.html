@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/tabs.css' %}" />
-    <link rel="stylesheet" href="{% static 'stage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/stage.css' %}" />
     <link rel="stylesheet" href="{% static 'css/table.css' %}" />
     <link rel="stylesheet" href="{% static 'css/button.css' %}" />
     <title>Python Self-Evaluation Form</title>
@@ -59,9 +59,8 @@
     		{% else %}
     		<input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}">
     		{% endif %}
-    		<label for="set_{{ department }}">{{ department }}</label>    		
+    		<label for="set_{{ department }}">{{ department }}</label>
     		{% endfor %}
-    		
     		{% for department in departments %}
     		<div id="tab_{{ department }}" class="stage">
     			{% for stage in stages %}
@@ -69,16 +68,18 @@
 					{% if forloop.first %}
 					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" checked>
 					{% else %}
-					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}">
+						{% if department == 'Skills' and stage.id == skills_first %}
+	    				<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" checked>
+						{% else %}
+						<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}">
+						{% endif %}
 					{% endif %}
 						{% for index, value in stage_indexes.items %}
 						{% if index == stage.id %}
 						<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num">{{ value }}</label>
 						<label id="label_txt_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_txt">{{ stage.name }}</label>
 						{% endif %}
-						{% endfor %}
-						
-						
+						{% endfor %}						
 				{% endif %}
 	        	{% endfor %}
 	        
