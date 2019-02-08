@@ -20,6 +20,8 @@ from authapp import views as views_auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('form/', views_form.formapp),
+    path('form/1', admin.site.urls),
+    path('form/<int:user_id>', views_form.formapp),
     path('', views_auth.index, name='home'),
+
 ]

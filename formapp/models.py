@@ -1,5 +1,4 @@
 from django.db import models
-from django.apps import apps
 from authapp.models import UserModel
 
 class GradeModel(models.Model):

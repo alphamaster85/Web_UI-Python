@@ -27,9 +27,10 @@
         </div>
         <div class="containerright">
             {% block login %}
-            <form class="login">
-                <input type="text" name="" placeholder="Login" required="">
-                <input type="password" name="" placeholder="Password" required="">
+            <form class="login" method="POST">
+            {% csrf_token %}
+                <input type="text" name="log" placeholder="Login" required="">
+                <input type="password" name="pass" placeholder="Password" required="">
                 <input type="submit" name="" value="Sign In">
             </form>  
             {% endblock %}
@@ -38,8 +39,8 @@
     </header>
 
     <main class="main">
-        {% block main %}
-        {% endblock %}
+    {% block main %}          
+    {% endblock %}
     </main>
 
     <footer class="footer">

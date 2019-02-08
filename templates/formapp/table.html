@@ -1,5 +1,35 @@
 {% extends "index.html" %}
 
+{% block style %}
+<style>
+    {% for stage in stages %}
+        #stage_{{ stage.id }}:checked ~ #tab_stage_{{ stage.id }} {
+            display: block; 
+        }
+        #label_txt_{{ stage.id }} {
+            display: none;
+        }
+        .hidden {
+			color: navy;
+			text-align: center;
+		}
+        #rad_hidden {
+        	display: none;
+        }
+    {% endfor %}
+</style>
+{% endblock %}
+
+{% block login %}
+    <form class="login" method="POST">
+    {% csrf_token %}
+        <input type="radio" name="log_out" value="log_out" id="rad_hidden">
+        <label for="rad_hidden" class="hidden">You are logged in as</label>
+        <h2><strong>{{ user_name }}</strong></h2> 
+        <input type="submit" name="" value="Sign Out">
+    </form>  
+    {% endblock %}
+
 {% block main %}
 <div class="tabs">
 <form method="POST" class="record" action="">
@@ -20,16 +50,16 @@
 			<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" checked>
 			{% else %}
 				{% if department == 'Skills' and stage.id == skills_first %}
-	    			<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" checked>
+	    			<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" class="stage_check" checked>
 				{% else %}
-					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}">
+					<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" class="stage_check">
 				{% endif %}
 			{% endif %}
 				
 			{% for index, value in stage_indexes.items %}
 			{% if index == stage.id %}
-				<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num">{{ value }}</label>
-				<label id="label_txt_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_txt">{{ stage.name }}</label>
+				<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num" value="{{ stage.name }}">{{ value }}</label>
+				<p id="label_txt_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_txt">{{ stage.name }}</p>
 			{% endif %}
 			{% endfor %}						
 		{% endif %}

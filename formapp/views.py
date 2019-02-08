@@ -1,17 +1,16 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import StageModel, QuestionModel, AnswerModel, GradeModel
-# from authapp.models import UserModel
+from authapp.models import UserDataModel
 from bulk_update.helper import bulk_update
 import datetime
-USER_ID = 1
 
-def formapp(request):
+def formapp(request, user_id):
 
     stages = StageModel.objects.all()
     questions = QuestionModel.objects.all()
-    departments = ['Activities', 'Skills']  # list(set(StageModel.objects.all()))
-    answers = AnswerModel.objects.filter(user_id=USER_ID)
+    departments = ['Activities', 'Skills']  # (set(StageModel.objects.all()))
+    answers = AnswerModel.objects.filter(user_id=user_id)
     grades = GradeModel.objects.all()
 
     i = 1; j = 1; skills_first = None
@@ -24,8 +23,10 @@ def formapp(request):
             stage_indexes[stage.id] = j
             if j == 1:
                 skills_first = stage.id
-                print(skills_first)
             j += 1
+
+    user = UserDataModel.objects.get(user=user_id)
+    user_name = '{} {}'.format(user.name, user.last)
 
     if request.method == "POST":
 
@@ -40,9 +41,10 @@ def formapp(request):
             all_answers.append(answer)
 
         bulk_update(answers)
-        answers = AnswerModel.objects.filter(user=USER_ID)
+        answers = AnswerModel.objects.filter(user=user_id)
+        return redirect('home')
 
-    return render(request, "index.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes, 'skills_first':skills_first})
+    return render(request, "formapp/table.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes, 'skills_first':skills_first, 'user_name':user_name})
 
 
 
