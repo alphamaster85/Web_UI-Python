@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import UserModel, UserDataModel
+from django.contrib.auth.models import User
+from django.contrib import auth
+from authapp.models import UserModel, UserDataModel
 from formapp.models import AnswerModel, QuestionModel
 
 def is_valid(user, log_pass):
@@ -23,7 +25,6 @@ def is_not_emty(user):
     return True
 
 def index(request):
-    start_marker = None
 
     if request.method == "POST":
 
@@ -39,4 +40,4 @@ def index(request):
                     return redirect('form/{}'.format(user.id))
 
 
-    return render(request, "authapp/first.html", context={'start_marker':start_marker})
+    return render(request, "authapp/first.html", context={})

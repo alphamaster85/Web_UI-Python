@@ -110,16 +110,6 @@ def insert_from_file():
 def insert_answers_user():
     USER_ID = 1
 
-    # for question in QuestionModel.objects.all():
-    #     answer = AnswerModel()
-    #     answer.user = USER_ID
-    #     if question.course_id == 1:
-    #         answer.question = question.id
-    #         answer.like = None
-    #         answer.grade = None
-    #         answer.date = None
-    #         answer.save()
-
     sql_insert = """INSERT INTO answers(user_id, question_id) VALUES(%s, %s);"""
     sql_select = """SELECT id FROM questions;"""
     conn = None
