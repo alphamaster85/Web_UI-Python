@@ -24,5 +24,5 @@ urlpatterns = [
     path('form/1', admin.site.urls),
     path('form/<int:user_id>', views.formapp),
     path('', login.index, name='home'),
-
+    # path('routing', views.routing.index),
 ]

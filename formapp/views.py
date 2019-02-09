@@ -4,6 +4,7 @@ from .models import StageModel, QuestionModel, AnswerModel, GradeModel
 from authapp.models import UserDataModel
 from bulk_update.helper import bulk_update
 import datetime
+from django.contrib import auth
 
 def formapp(request, user_id):
 
@@ -42,6 +43,7 @@ def formapp(request, user_id):
 
         bulk_update(answers)
         answers = AnswerModel.objects.filter(user=user_id)
+        auth.logout(request)
         return redirect('home')
 
     return render(request, "formapp/table.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'stage_indexes':stage_indexes, 'skills_first':skills_first, 'user_name':user_name})

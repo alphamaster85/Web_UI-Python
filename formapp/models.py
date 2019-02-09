@@ -1,28 +1,28 @@
 from django.db import models
-from authapp.models import UserModel
+from django.conf import settings
 
 class GradeModel(models.Model):
     class Meta:
-        db_table = 'grades'
+        db_table = 'grade'
 
     name = models.CharField(max_length=20, default=None)
 
 class CourseModel(models.Model):
     class Meta:
-        db_table = 'courses'
+        db_table = 'course'
 
     name = models.CharField(max_length=20, default=None)
 
 class StageModel(models.Model):
     class Meta:
-        db_table = 'stages'
+        db_table = 'stage'
 
     department = models.CharField(max_length=20, default=None)
     name = models.CharField(max_length=50, default=None)
 
 class QuestionModel(models.Model):
     class Meta:
-        db_table = 'questions'
+        db_table = 'question'
 
     course = models.ForeignKey(CourseModel, on_delete=models.CASCADE)
     stage = models.ForeignKey(StageModel, on_delete=models.CASCADE)
@@ -31,9 +31,9 @@ class QuestionModel(models.Model):
 
 class AnswerModel(models.Model):
     class Meta:
-        db_table = 'answers'
+        db_table = 'answer'
 
-    user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     question = models.ForeignKey(QuestionModel, on_delete=models.DO_NOTHING)
     like = models.NullBooleanField(default=None, null=True)
     grade = models.ForeignKey(GradeModel, on_delete=models.DO_NOTHING, default=None, null=True)
@@ -41,9 +41,9 @@ class AnswerModel(models.Model):
 
 class CommentExpModel(models.Model):
     class Meta:
-        db_table = 'comments'
+        db_table = 'comment'
 
-    expert = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING)
+    expert = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     answer = models.ForeignKey(AnswerModel, on_delete=models.CASCADE)
     grade = models.ForeignKey(GradeModel, on_delete=models.DO_NOTHING, default=None)
     title = models.CharField(max_length=250, default=None)
