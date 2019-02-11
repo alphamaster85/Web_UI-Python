@@ -2,7 +2,6 @@
 
 	{% if stage.department == department %}
 		<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" class="stage_check stage_check_{{ department }}">		
-				
 	{% for index, value in stage_indexes.items %}
 		{% if index == stage.id %}
 		<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num">{{ value }}</label>

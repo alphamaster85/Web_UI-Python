@@ -26,11 +26,14 @@ def formapp(request, user_id):
     departments = sorted(list(set(parts)))
 
     #take dict with numbers of stages in departmets Activities or Skills
-    i = 1; j = 1; skills_first = None
+    i = 1; j = 1;
+    stage_indexes = {}
     for stage in stages:
         if stage.department == departments[0]:
+            stage_indexes[stage.id] = i
             i += 1
         if stage.department == departments[1]:
+            stage_indexes[stage.id] = j
             j += 1
 
     # process the POST-request and write to database
@@ -41,10 +44,11 @@ def formapp(request, user_id):
 
             if request.POST.get('set_like_' + str(answer.question_id)):
                 answer.like = request.POST.get('set_like_' + str(answer.question_id))
-                answer.date = datetime.date.today()
             if request.POST.get('set_grade_' + str(answer.question_id)):
                 answer.grade_id = int(request.POST.get('set_grade_' + str(answer.question_id)))
+            if request.POST.get('set_like_' + str(answer.question_id)) or request.POST.get('set_grade_' + str(answer.question_id)):
                 answer.date = datetime.date.today()
+
             all_answers.append(answer)
 
         bulk_update(answers)
@@ -52,7 +56,7 @@ def formapp(request, user_id):
         auth.logout(request)
         return redirect('home')
 
-    return render(request, "formapp/table.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'user_name':user_name})
+    return render(request, "formapp/table.html", context={'questions':questions, 'stages':stages, 'departments':departments, 'answers':answers, 'grades':grades, 'user_name':user_name, 'stage_indexes':stage_indexes})
 
 
 
