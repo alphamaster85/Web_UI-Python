@@ -7,6 +7,9 @@ class RoleModel(models.Model):
 
     name = models.CharField(max_length=30, default=None)
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 # class UserModel(models.Model):
 #     class Meta:
 #         db_table = 'users'
@@ -27,3 +30,6 @@ class UserDataModel(models.Model):
     age = models.PositiveSmallIntegerField(default=None, null=True)
     email = models.CharField(max_length=30, default=None, null=True)
     role = models.ForeignKey(RoleModel, on_delete=models.DO_NOTHING, default=None,)
+
+    def __str__(self):
+        return '{} {}'.format(self.name, self.last)

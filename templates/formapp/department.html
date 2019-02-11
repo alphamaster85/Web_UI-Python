@@ -1,0 +1,16 @@
+{% for department in departments %}
+	<input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}">
+    <label id="label_for_{{ department }}" for="set_{{ department }}" class="department_check">{{ department }}</label>
+{% endfor %}
+    
+{% for department in departments %}
+    <div id="tab_set_{{ department }}" class="stage">
+    	
+	{% include "formapp/stage.html" %}
+    	
+	{% block button %}
+		<button id="btn_prev_{{ department }}" class="button prev" action="">Previous</button>
+		<button id="btn_next_{{ department }}" class="button next" action="">Next</button>		    
+    {% endblock %} 
+	</div>   
+{% endfor %}

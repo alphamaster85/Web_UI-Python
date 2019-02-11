@@ -7,11 +7,17 @@ class GradeModel(models.Model):
 
     name = models.CharField(max_length=20, default=None)
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 class CourseModel(models.Model):
     class Meta:
         db_table = 'course'
 
     name = models.CharField(max_length=20, default=None)
+
+    def __str__(self):
+        return '{}'.format(self.name)
 
 class StageModel(models.Model):
     class Meta:
@@ -19,6 +25,9 @@ class StageModel(models.Model):
 
     department = models.CharField(max_length=20, default=None)
     name = models.CharField(max_length=50, default=None)
+
+    def __str__(self):
+        return '{}/{}'.format(self.department, self.name)
 
 class QuestionModel(models.Model):
     class Meta:
@@ -28,6 +37,9 @@ class QuestionModel(models.Model):
     stage = models.ForeignKey(StageModel, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, default=None)
     tooltip = models.TextField(max_length=350, null=True, default=None)
+
+    def __str__(self):
+        return '{}'.format(self.title)
 
 class AnswerModel(models.Model):
     class Meta:
@@ -39,6 +51,9 @@ class AnswerModel(models.Model):
     grade = models.ForeignKey(GradeModel, on_delete=models.DO_NOTHING, default=None, null=True)
     date = models.DateTimeField(default=None, null=True)
 
+    def __str__(self):
+        return 'for question: {}'.format(self.question)
+
 class CommentExpModel(models.Model):
     class Meta:
         db_table = 'comment'
@@ -48,3 +63,6 @@ class CommentExpModel(models.Model):
     grade = models.ForeignKey(GradeModel, on_delete=models.DO_NOTHING, default=None)
     title = models.CharField(max_length=250, default=None)
     date = models.DateTimeField()
+
+    def __str__(self):
+        return 'for answer: {}'.format(self.answer)

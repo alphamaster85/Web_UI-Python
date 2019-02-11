@@ -1,0 +1,28 @@
+{% for question in questions %}
+	{% if question.stage_id == stage.id %}
+	<div id="table_row_{{ question.id }}"class="row lightning">
+		
+		{% if question.tooltip == None %}
+			<p id="question_{{ question.id }}" class="row col1">{{ question.title }}</p>
+		{% else %}
+			<p id="question_{{ question.id }}" class="row col1" title="{{ question.tooltip }}">{{ question.title }}</p>
+		{% endif %}
+			                
+		{% for answer in answers %}			                
+			{% if answer.question_id == question.id %}
+				<p id="like_{{ question.id }}" class="row col2">
+				
+				{% include "formapp/like.html" %}
+				
+				</p>
+
+				<p id="grade_{{ question.id }}" class="row col3">
+
+				{% include "formapp/grade.html" %}
+				
+				</p>
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% endif %}
+{% endfor %}

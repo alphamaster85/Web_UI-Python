@@ -1,0 +1,20 @@
+{% for department in departments %}
+{% if forloop.first %}   	
+   	<input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}" checked>
+{% else %}
+    <input type="radio" name="set_Department" value="{{ department }}" id="set_{{ department }}">
+{% endif %}
+    <label for="set_{{ department }}">{{ department }}</label>
+{% endfor %}
+    
+{% for department in departments %}
+    <div id="tab_{{ department }}" class="stage">
+    	
+	{% include "formapp/stage.html" %}
+    	
+	{% block button %}
+		<button id="btn_prev_{{ department }}" class="button prev" action="">Previous</button>
+		<button id="btn_next_{{ department }}" class="button next" action="">Next</button>		    
+    {% endblock %} 
+	</div>   
+{% endfor %}

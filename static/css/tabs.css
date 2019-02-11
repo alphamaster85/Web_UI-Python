@@ -43,14 +43,14 @@
 #set_Skills:checked + input:first {
     display: block; 
 }
-#tab_Activities,
-#tab_Skills {
+#tab_set_Activities,
+#tab_set_Skills {
     display: none;
     padding: 10px;
     border: 1px solid navy;
 }
 
-#set_Activities:checked ~ #tab_Activities,
-#set_Skills:checked ~ #tab_Skills { 
+#set_Activities:checked ~ #tab_set_Activities,
+#set_Skills:checked ~ #tab_set_Skills { 
     display: block; 
 }

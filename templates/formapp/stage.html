@@ -1,0 +1,31 @@
+{% for stage in stages %}
+	{% if stage.department == department %}
+		<input type="radio" name="set_{{ department }}" value="{{ stage.id }}" id="stage_{{ stage.id }}" class="stage_check stage_check_{{ department }}">		
+					
+	{% for index, value in stage_indexes.items %}
+		{% if index == stage.id %}
+		<label id="label_num_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_num">{{ value }}</label>
+		<p id="label_txt_stage_{{ stage.id }}" for="stage_{{ stage.id }}" class="label_txt">{{ stage.name }}</p>
+		{% endif %}
+	{% endfor %}						
+	{% endif %}
+{% endfor %}
+	        
+{% for stage in stages %}
+	{% if stage.department == department %}
+	<div id="tab_stage_{{ stage.id }}" class="row"> 
+		<div id="head_row_{{ stage.id }}" class="row">
+		{% if department == 'Activities' %}
+			<p id="head_col_1_{{ stage.id }}" class="col1 head">Activity</p>
+		{% else %}
+			<p id="head_col_1_{{ stage.id }}" class="col1 head">Skill</p>
+		{% endif %}
+			<p id="head_col_2_{{ stage.id }}" class="col2 head">Like to do, Y/N</p>
+			<p id="head_col_3_{{ stage.id }}" class="col3 head">Self estimate, Grade</p>
+		</div>
+
+		{% include "formapp/question.html" %}
+				
+	</div>				
+	{% endif %}
+{% endfor %}

@@ -1,21 +1,28 @@
-{% extends "index.html" %}
-
-{% block style %}
 <style>
     {% for stage in stages %}
         #stage_{{ stage.id }}:checked ~ #tab_stage_{{ stage.id }} {
             display: block; 
         }
-        #label_txt_{{ stage.id }} {
+        #label_txt_stage_{{ stage.id }} {
             display: none;
         }
-        /*#stage_{{ stage.id }}:checked ~ #label_num_{{ stage.id }} {
-            display: none;
-        }
-        #stage_{{ stage.id }}:checked ~ #label_txt_{{ stage.id }} {
-            display: block;
-            width: auto;
-        }*/
-    {% endfor %}
+    {% endfor %}    
+    .hidden {
+		color: navy;
+		text-align: center;
+	}
+    #rad_hidden {
+        display: none;
+    }
+    #tab_set_Activities,
+	#tab_set_Skills {
+		display: none;
+		padding: 10px;
+		border: 1px solid navy;
+	}
+	#set_Activities:checked ~ #tab_set_Activities,
+	#set_Skills:checked ~ #tab_set_Skills { 
+		display: block; 
+	}
+    
 </style>
-{% endblock %}

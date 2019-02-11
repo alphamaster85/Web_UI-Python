@@ -46,8 +46,8 @@ def index(request):
             role = UserDataModel.objects.get(user_id=user.id).role_id
             id = UserDataModel.objects.get(user_id=user.id).user_id
             if is_not_emty(user):
-                # if role == 1:
-                #     return redirect('form/{}'.format(role))
+                if role == 1:
+                    return redirect('form/{}'.format(role))
                 return redirect('form/{}'.format(id))
 
     return render(request, "authapp/first.html", context={})

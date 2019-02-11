@@ -1,0 +1,8 @@
+{% for grade in grades %}
+	{% if answer.grade_id == grade.id %}
+		<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row" checked>
+	{% else %}
+		<input type="radio" name="set_grade_{{ question.id }}" value="{{ grade.id }}" id="set_{{ grade.name }}_{{ question.id }}" class="row">
+	{% endif %}
+		<label for="set_{{ grade.name }}_{{ question.id }}" class="row" title="{{ grade.name }}">{{ grade.name|first }}</label>
+{% endfor %}

@@ -1,0 +1,13 @@
+{% if answer.like == True %}
+	<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row" checked>
+{% else %}
+	<input type="radio" name="set_like_{{ question.id }}" value="True" id="set_YES_{{ question.id }}" class="row">
+{% endif %}
+	<label for="set_YES_{{ question.id }}" class="row like">YES</label>
+								
+{% if answer.like == False %}
+	<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row " checked>
+{% else %}
+	<input type="radio" name="set_like_{{ question.id }}" value="False" id="set_NO_{{ question.id }}" class="row ">
+{% endif %}
+	<label for="set_NO_{{ question.id }}" class="row like">NO</label>
