@@ -19,16 +19,16 @@ $(function(){
     change_label_Activities(targetActivities, text_stage_Activities);
 
     function set_Activities(target) {
-        set_previously_target()
-        set_default()
+        set_previously_target();
+        set_default();
         $("#tab_"+target.id+" .stage_check:first-child").prop("checked", true);
         text_stage_Activities = document.getElementById("tab_set_Activities").getElementsByTagName('p')[0].textContent;
         change_label_Activities(targetActivities, text_stage_Activities);
     };
 
     function set_Skills(target) {
-        set_previously_target()
-        set_default()
+        set_previously_target();
+        set_default();
         $("#tab_"+target.id+" .stage_check:first-child").prop("checked", true);        
         text_stage_Skills = document.getElementById("tab_set_Skills").getElementsByTagName('p')[0].textContent;
         change_label_Skills(targetSkills, text_stage_Skills);
@@ -45,10 +45,10 @@ $(function(){
     };
     
     function change_label_Activities(target, text_stage) {
-        set_previously_target()
+        set_previously_target();
         selectedRadioActivities = target;
         text_number_Activities = $("label[for='"+selectedRadioActivities.id+"']").html();
-        $("label[for='"+selectedRadioActivities.id+"']").css("width", "15%");
+        $("label[for='"+selectedRadioActivities.id+"']").css("width", "auto");
         $("label[for='"+selectedRadioActivities.id+"']").html(text_stage); 
     
         stages = document.getElementsByClassName("stage_check_Activities");
@@ -60,10 +60,10 @@ $(function(){
     };
 
     function change_label_Skills(target, text_stage) {
-        set_previously_target()
+        set_previously_target();
         selectedRadioSkills = target;
         text_number_Skills = $("label[for='"+selectedRadioSkills.id+"']").html();
-        $("label[for='"+selectedRadioSkills.id+"']").css("width", "15%");
+        $("label[for='"+selectedRadioSkills.id+"']").css("width", "auto");
         $("label[for='"+selectedRadioSkills.id+"']").html(text_stage);
         
         stages = document.getElementsByClassName("stage_check_Skills");
